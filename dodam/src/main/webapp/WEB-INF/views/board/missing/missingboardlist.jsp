@@ -93,7 +93,7 @@
 			success : function(data) { // 통신 성공시 수행될 콜백 함수
 				console.log(data);
 				parseResult(data);
-				parsePaging(data.pagingInfo);
+				parsePaging(data.pagingInfo, pageNo);
 				
 				$("#li1").children("a").css("color", "#ff7f00");
 				$("#li1").children("a").css("font-weight", "bold");
@@ -101,13 +101,13 @@
 		});
 	}
 	
-	function parsePaging(pagingInfo) {
+	function parsePaging(pagingInfo, pageNo) {
 		let location = $("#location").val();
 		let animal = $("#animal").val();
 		let itemsPerPage = $("#itemsPerPage").val();
 		console.log(pagingInfo);
 		let output = '';
-		if ("${param.pageNo}" > 1) {
+		if ("${param.pageNo}" > 1 || "${param.pageNo}" != "" || pageNo != 1) {
 			output += '<li><a href="/board/missing/list?&pageNo=1&searchWord=${param.searchWord }&location=' + location
 				+ '&animal=' + animal + '&category=${param.category }&itemsPerPage=' + itemsPerPage + '">&lt;&lt;</a></li>';
 			output += '<li><a href="/board/missing/list?&pageNo=${param.pageNo - 1 }&searchWord=${param.searchWord }&location=' + location
