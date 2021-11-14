@@ -27,9 +27,9 @@
 			for (let i=0; i<imgAr.length; i++) {
 				if (imgAr[i] != "") {
 					if (imgAr[i].split(":")[0] == "http") {
-						output += "<img src='" + imgAr[i] + "' width='30%'/>";
+						output += "<img src='" + imgAr[i] + "' width='30%' onclick='window.open(this.src);' style='cursor:pointer;'/>";
 					} else {
-						output += "<img src='../../resources/uploads/kmj/missing" + imgAr[i] + "' width='30%'/>";
+						output += "<img src='../../resources/uploads/kmj/missing" + imgAr[i] + "' width='30%' onclick='window.open(this.src);' style='cursor:pointer;'/>";
 					}
 					imgCnt++;
 				}
@@ -125,6 +125,8 @@
 				}
 			});
 			
+			
+			// 게시글 상세페이지 로딩되면 다른 게시글 추천하는 데이터 가져오는 ajax
 			url="/board/missing/getOtherList";
 			
 			$.ajax({

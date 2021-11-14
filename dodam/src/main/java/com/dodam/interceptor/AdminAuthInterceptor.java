@@ -20,16 +20,20 @@ public class AdminAuthInterceptor extends HandlerInterceptorAdapter {
 		String path = uri.substring(0, uri.lastIndexOf("/"));
 		
 		String returnPath = "";
-		// 로그인 하지 않았거나 아이디가 admin123이 아니면
+		// 로그인 하지 않았으면
 		if (loginmem == null) {
 			returnPath = "/member/login";
-			
 			response.sendRedirect(returnPath);
+			
+		// 로그인한 아이디가 관리자 계정이 아니면
 		} else if (!(loginmem.getIsadmin().equals("Y"))) {
+			// 반려동물 전시회에서 온 요청이라면(전시회 글쓰기 권한 접근)
 			if (path.equals("/board/event")) {
 				returnPath = "/board/event/listPage";
+			// 공지사항에서 온 요청이라면(공지사항 글쓰기 권한 접근)
 			} else if (path.equals("/board/notice")) {
 				returnPath = "/board/notice/listAll";
+			// 그 외 관리자 계정 권한 접근
 			} else {
 				returnPath = "/";
 			}

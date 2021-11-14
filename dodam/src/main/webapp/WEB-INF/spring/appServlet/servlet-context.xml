@@ -47,16 +47,16 @@
 	<!-- 인터셉터 설정할 url지정 -->
 	<interceptors>
 		<interceptor>
-        	<mapping path="/board/missing/write" /> 
-        	<mapping path="/board/proud/register" />
-        	<mapping path="/board/qna/register" />
-        	<beans:ref bean="AuthInterceptor" />
-		</interceptor>
-		<interceptor>
         	<mapping path="/admin/**" />
         	<mapping path="/board/event/write" />
         	<mapping path="/board/notice/createBoard"/>
         	<beans:ref bean="AdminAuthInterceptor" />
+		</interceptor>
+		<interceptor>
+        	<mapping path="/board/missing/write" /> 
+        	<mapping path="/board/proud/register" />
+        	<mapping path="/board/qna/register" />
+        	<beans:ref bean="AuthInterceptor" />
 		</interceptor>
 	</interceptors>
 	
