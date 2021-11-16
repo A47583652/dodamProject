@@ -444,7 +444,7 @@
 		function viewAllReplies() {
 			let pno = "${param.no}";
 			
-			let url = "/board/missing/reply/viewAll/" + pno;
+			let url = "/board/missing/replies/" + pno;
 			$.ajax({
 	            url : url, // ajax와 통신 할 곳
 	            dataType : "json", // 수신될 데이터의 타입

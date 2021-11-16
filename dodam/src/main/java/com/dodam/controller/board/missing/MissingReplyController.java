@@ -20,13 +20,13 @@ import com.dodam.domain.missing.MissingReplyVo;
 import com.dodam.service.board.missing.MissingReplyService;
 
 @RestController
-@RequestMapping("/board/missing/reply")
+@RequestMapping("/board/missing")
 public class MissingReplyController {
 	
 	@Inject
 	private MissingReplyService service;
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="/reply", method=RequestMethod.POST)
 	public ResponseEntity<String> registerReply(@RequestBody MissingReplyVo mrv) {
 		if (service.insertReply(mrv)) {
 			return new ResponseEntity<String>("success", HttpStatus.OK);
@@ -35,7 +35,7 @@ public class MissingReplyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/viewAll/{pno}", method=RequestMethod.GET)
+	@RequestMapping(value="/replies/{pno}", method=RequestMethod.GET)
 	public Map<String, Object> viewAllReply(@PathVariable("pno") int pno) {
 		
 		List<MissingReplyVo> lst = service.selectAllReply(pno);
@@ -46,7 +46,7 @@ public class MissingReplyController {
 		return map;
 	}
 	
-	@RequestMapping(value="/{no}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/reply/{no}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteReply(@PathVariable("no") int no) {
 		
 		System.out.println(no);
@@ -56,7 +56,7 @@ public class MissingReplyController {
 		return new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{no}", method=RequestMethod.PUT)
+	@RequestMapping(value="/reply/{no}", method=RequestMethod.PUT)
 	public ResponseEntity<String> updateReply(@PathVariable("no") int no, @RequestBody MissingReplyVo mrv) {
 		
 		if (service.updateReply(mrv)) {
